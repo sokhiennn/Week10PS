@@ -24,6 +24,8 @@ public class ThirdActivity extends AppCompatActivity {
 
     Song song;
 
+    DBHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +63,13 @@ public class ThirdActivity extends AppCompatActivity {
                 song.setSingers(singer);
                 song.setYear(year);
                 song.setStars(star);
-                DBHelper.updateSongs(song);
+                dbHelper.updateSongs(song);
             }
         });
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHelper.deleteSongs(song.getId());
+                dbHelper.deleteSongs(song.getId());
                 finish();
             }
         });

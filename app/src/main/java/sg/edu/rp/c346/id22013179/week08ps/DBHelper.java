@@ -109,14 +109,14 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String select = COLUMN_STARS + " ?";
         String[] selectArgs = {"5"};
-        Cursor cursor = db.query(TABLE_SONG, null, select, selectArgs, null, null, null);
+        Cursor cursor = db.query(TABLE_SONG, selectArgs , select, selectArgs, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
-                String title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE));
-                String singers = cursor.getString(cursor.getColumnIndex(COLUMN_SINGERS));
-                int year = cursor.getInt(cursor.getColumnIndex(COLUMN_YEAR));
-                int stars = cursor.getInt(cursor.getColumnIndex(COLUMN_STARS));
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                String singers = cursor.getString(2);
+                int year = cursor.getInt(3);
+                int stars = cursor.getInt(4);
 
                 Song song = new Song(id, title, singers, year, stars);
                 songList.add(song);
@@ -133,14 +133,14 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String selection = COLUMN_YEAR + " ?";
         String[] selectionArgs = {String.valueOf(year)};
-        Cursor cursor = db.query(TABLE_SONG,null,  selection, selectionArgs, null, null, null);
+        Cursor cursor = db.query(TABLE_SONG, selectionArgs,  selection, selectionArgs, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
-                int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
-                String title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE));
-                String singers = cursor.getString(cursor.getColumnIndex(COLUMN_SINGERS));
-                int stars = cursor.getInt(cursor.getColumnIndex(COLUMN_STARS));
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                String singers = cursor.getString(2);
+                int stars = cursor.getInt(4);
 
                 Song song = new Song(id, title, singers, year, stars);
                 songList.add(song);
